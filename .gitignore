@@ -1,0 +1,7 @@
+
+dwm
+dwm.o
+config.h
+*.orig
+
+*.swp

@@ -1,0 +1,3 @@
+cd dwm-src-dir
+patch -p1 < path/to/patch.diff
+
