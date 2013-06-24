@@ -20,8 +20,8 @@ static const char *tags[] = { "one", "two", "three", "four" };
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",  NULL,       NULL,       0,            False,       -1 },
-	{ "MPlayer",  NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "MPlayer",  NULL,       NULL,       0,            True,        -1 },
+	{ "Firefox",  NULL,       NULL,       0,       False,       -1 },
 };
 
 /* layout(s) */
@@ -59,7 +59,7 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_t,      togglebar,      {0} },
+	{ MODKEY,                       XK_n,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
