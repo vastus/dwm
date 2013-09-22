@@ -15,13 +15,15 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "one", "two", "three", "four" };
+static const char *tags[] = { "web", "mail","irc", "code", "misc" };
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            True,        -1 },
-	{ "MPlayer",  NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",  NULL,       NULL,       0,            True,       -1 },
+	/* class         instance    title       tags mask     isfloating   monitor */
+	{ "Gimp",        NULL,       NULL,       0,            True,        -1 },
+	{ "MPlayer",     NULL,       NULL,       0,            True,        -1 },
+	{ "Firefox",     NULL,       NULL,       0,            True,        -1 },
+	{ "Thunderbird", NULL,       NULL,       1 << 1,       True,        -1 },
+	{ NULL,          NULL,       "irssi",    1 << 2,       False,       -1 },
 };
 
 /* layout(s) */
@@ -52,7 +54,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "urxvt", NULL };
+static const char  *termcmd[] = { "urxvt", NULL };
+// static const char   *irccmd[] = { "urxvt", "-title", "irssi@melkki", "-e", "ssh melkki -t screen -rd", NULL };
 
 #include "patches/movestack.c"
 static Key keys[] = {
