@@ -6,7 +6,7 @@ static const char font[]            = "-*-clean-*-*-*-*-*-*-*-*-*-*-*-*";
 static const char normbordercolor[] = "#cccccc";
 static const char normbgcolor[]     = "#000000";
 static const char normfgcolor[]     = "#7e8aa2";
-static const char selbordercolor[]  = "#0066ff";
+static const char selbordercolor[]  = "#0066cc";
 static const char selbgcolor[]      = "#000000";
 static const char selfgcolor[]      = "#a1b0cf";
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
@@ -15,15 +15,16 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "web", "mail","irc", "code", "term", "misc" };
+static const char *tags[] = { "web", "mail","code", "term", "irssi", "misc" };
 
 static const Rule rules[] = {
 	/* class         instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",        NULL,       NULL,       0,            True,        -1 },
 	{ "MPlayer",     NULL,       NULL,       0,            True,        -1 },
-	{ "Firefox",     NULL,       NULL,       0,            True,        -1 },
+	{ "Firefox",     NULL,       NULL,       1,            True,        -1 },
 	{ "Thunderbird", NULL,       NULL,       1 << 1,       True,        -1 },
-	{ NULL,          NULL,       "irssi",    1 << 2,       False,       -1 },
+	{ "NetBeans",    NULL,       NULL,       1 << 2,       True,        -1 },
+	{ NULL,          NULL,       "irssi",    1 << 4,       False,       -1 },
 };
 
 /* layout(s) */
@@ -53,15 +54,18 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char  *termcmd[] = { "urxvt", NULL };
-// static const char   *irccmd[] = { "urxvt", "-title", "irssi@melkki", "-e", "ssh melkki -t screen -rd", NULL };
+static const char    *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char     *termcmd[] = { "urxvt", NULL };
+static const char      *irccmd[] = { "urxvt", "-title", "irssi", "-e", "ssh melkki -t screen -rd", NULL };
+static const char *netbeanscmd[] = { "netbeans" };
 
 #include "patches/movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ ControlMask|ShiftMask,        XK_i,      spawn,          {.v = irccmd } },
+	{ ControlMask|ShiftMask,        XK_o,      spawn,          {.v = netbeanscmd } },
 	{ MODKEY,                       XK_n,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
